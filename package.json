@@ -1,0 +1,10 @@
+{
+  "name": "node-wordpress-ajax-hook",
+  "version": "1.0.0",
+  "dependencies": {
+    "express": "~4.9.2",
+    "jade": "^1.9.2",
+    "mysql": "~2.5.0",
+    "node-minify": "^1.0.1"
+  }
+}
