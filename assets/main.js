@@ -5,9 +5,9 @@ window.onload = function(){
   var h = $(window).height();
 
   //CSS Ready functions
-  //alert($("link[href='/assets/styles.min.css']").length);
   if ($("link[href='/assets/styles.min.css']").length == 1) {
-    alert('JQuery Loaded');
+	//Document load
+	
   }
   //Scroll specific function
   $(window).scroll(function(){
