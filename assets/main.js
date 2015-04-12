@@ -6,7 +6,21 @@ window.onload = function(){
 
   //CSS Ready functions
   if ($("link[href='/assets/styles.min.css']").length == 1) {
-	//Document load
+	//Show main
+	$('.main').animate({'opacity': 1}, 300);
+	//View tags
+	$('.main .copy a').click(function(e){
+	  e.preventDefault();
+	  $.get('/allposts'/*this.href*/, function(data){
+		$('.main').animate({'opacity': 0}, 300, function(){
+		  /*$(this)
+			.empty()
+			.html(JSON.stringify(data))
+			.animate({'opacity': 1}, 600);*/
+		  window.location += 'static-dynamic-websites';
+		});	
+	  });
+	});
 	
   }
   //Scroll specific function

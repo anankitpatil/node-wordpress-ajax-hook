@@ -1,4 +1,5 @@
-html
+doctype html
+html(lang="en")
   head
     title Website Design & Development, Pune | Portfolio
     link(rel='shortcut icon', href='/favicon.png')
@@ -24,11 +25,26 @@ html
     meta(name='twitter:app:url:googleplay', content='http://ankitpatil.com')
     link(rel='stylesheet', type='text/css', href='/assets/styles.min.css')
   body
-    nav.navbar
-      .container
     .container
-      .row
-        .col-lg-12.content
+      .row.main
+        if(_page == '')
+          .col-lg-3
+          .col-lg-9.copy
+            h1 I am <name>Ankit Patil</name>. I design and develop minimal <a href='static-dynamic-websites'>Static & Dynamic <b>#Websites</b></a>. I also work with brands, providing <a href='print-layout-communication'><b>#Print</b> & Layout Communication</a>, <a href='online-advertising-direct-mailers'><b>#Online</b> Adverising & Direct Mailers</a> and <a href='identity-design'><b>#Identity</b> Design</a>.
+            h2 #Websites
+            each _post in _posts
+              .row
+                .col-xs-3
+                  figure
+                    img(src!= _post.thumb)
+                .col-xs-9
+                  h3!= _post.post_title
+                  p!= _post.post_excerpt
+                  span!= _post.hashtags
+              .col-lg-12.space
+          .col-lg-12
+        else if(_page == 'static-dynamic-websites')
+          h2 SECOND PAGE
     footer.footer
       .container
     .canvas

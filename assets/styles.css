@@ -1,0 +1,53 @@
+html, body {
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+.smooth {
+	-webkit-transition: all 300ms ease;
+    -moz-transition: all 300ms ease;
+    -o-transition: all 300ms ease;
+    transition: all 300ms ease;
+}
+figure img {
+	width: 100%;
+	height: auto;
+}
+.space {
+	height: 36px;
+}
+.nopadding {
+	padding: 0px;
+}
+/* Navbar */
+
+/* Content */
+.main {
+	opacity: 0;
+}
+.main h1 {
+	letter-spacing: 1px;
+	line-height: 69px;
+	font-size: 41px;
+	margin: 48px 0;
+}
+.main h1 name {
+	/*border-bottom: 1px solid #000;*/
+}
+.main h1 b {
+	font-weight: 500;
+	color: #ffd82d;
+}
+.main a {
+	border-bottom: 1px solid #FFFFFF;
+}
+.main a:hover {
+	text-decoration: none;
+	color: #000;
+	/*border-bottom: 1px solid #23527c;*/
+}
+.main a:hover b {
+	color: #ff8a47;
+}
+.main h2 {
+	margin-bottom: 54px;
+}
+/*Footer*/
