@@ -6,6 +6,8 @@ window.onload = function(){
 
   //CSS Ready functions
   if ($("link[href='/assets/styles.min.css']").length == 1) {
+	//Remove loader
+	$('.load').animate({'opacity': 0}, 300, function() { $(this).remove() });
 	//Show main
 	$('.main').animate({'opacity': 1}, 300);
 	//View tags

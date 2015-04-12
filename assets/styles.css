@@ -17,6 +17,14 @@ figure img {
 .nopadding {
 	padding: 0px;
 }
+.load {
+	position: fixed;
+	left: 50%;
+	top: 50%;
+	margin-left: -24px;
+	margin-top: -24px;
+	z-index: 9999;
+}
 /* Navbar */
 
 /* Content */
