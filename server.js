@@ -52,6 +52,30 @@ app.get("/", function(req, res) {
   }});
 });
 
+//Individual post page
+app.get('/:post', function(req, res) {
+  var post = req.params.post;
+  connection = mysql.createConnection(dbconfig);
+  connection.connect(function(err) { if(!err) {
+	//Get all posts
+    connection.query('SELECT * from wp_posts WHERE post_status = "publish" AND post_type = "html5-blank"', function(err, rows) { if(!err) {
+	  for(var i in rows) {
+		  console.log(rows[i]);
+		if(post == rows[i]['post_name']) {
+		  connection.query('SELECT p.* FROM wp_postmeta AS pm INNER JOIN wp_posts AS p ON pm.meta_value=p.ID WHERE pm.post_id = ' + rows[i].ID + ' AND pm.meta_key = "_thumbnail_id" ORDER BY p.post_date DESC LIMIT 15', function(err, __rows) { if(!err) {
+		    for(var j in __rows) {
+		      var url = __rows[j].guid;
+		      rows[i]['thumb'] = url.substring(0, url.length - 4) + '-300x300' + url.substring(url.length - 4, url.length);
+		    };
+			console.log(rows[i]);
+			res.render('content', {_page: 'post', _post: rows[i]});
+	      }});
+		};
+	  }
+	}});
+  }});
+});
+
 app.get("/static-dynamic-websites", function(req, res){
   _page = 'static-dynamic-websites';
   var zee = JSON.stringify(wp_posts);

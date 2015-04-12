@@ -15,13 +15,14 @@ window.onload = function(){
 	//View tags
 	$('.main .copy a').click(function(e){
 	  e.preventDefault();
+	  var href = $(this).attr('href');
 	  $.get('/allposts'/*this.href*/, function(data){
 		$('.main').animate({'opacity': 0}, 300, function(){
 		  /*$(this)
 			.empty()
 			.html(JSON.stringify(data))
 			.animate({'opacity': 1}, 600);*/
-		  window.location += 'static-dynamic-websites';
+		  window.location += href;
 		});	
 	  });
 	});

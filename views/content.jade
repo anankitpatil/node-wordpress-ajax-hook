@@ -45,6 +45,15 @@ html(lang="en")
           .col-lg-12
         else if(_page == 'static-dynamic-websites')
           h2 SECOND PAGE
+        else if(_page == 'post')
+          .col-lg-3
+            figure
+              img(src!= _post.thumb)
+          .col-lg-9
+            h2!= _post.post_title
+            h4!= _post.post_excerpt
+          .row
+            .col-lg-12!= _post.post_content
     footer.footer
       .container
     .load
