@@ -38,11 +38,9 @@ app.get("/", function(req, res) {
 		  z++;
 		}});
 		//Get thumbnails
-		connection.query('SELECT p.* FROM wp_postmeta AS pm INNER JOIN wp_posts AS p ON pm.meta_value=p.ID WHERE pm.post_id = ' + rows[i].ID + ' AND pm.meta_key = "_thumbnail_id" ORDER BY p.post_date DESC LIMIT 15', function(err, __rows) { if(!err) {
-		  for(var k in __rows) {
-			var url = __rows[k].guid;
-		    rows[y]['thumb'] = url.substring(0, url.length - 4) + '-300x300' + url.substring(url.length - 4, url.length);
-		  };
+		connection.query('SELECT p.* FROM wp_postmeta AS pm INNER JOIN wp_posts AS p ON pm.meta_value=p.ID WHERE pm.post_id = ' + rows[i].ID + ' AND pm.meta_key = "_thumbnail_id" LIMIT 1', function(err, __rows) { if(!err) {
+		  var url = __rows[0].guid;
+		  rows[y]['thumb'] = url.substring(0, url.length - 4) + '-300x300' + url.substring(url.length - 4, url.length);
 		  y++;
 		  //Render
 		  if(z == rows.length && y == rows.length) res.render('content', {_page: '', _posts: rows});
@@ -53,25 +51,17 @@ app.get("/", function(req, res) {
 });
 
 //Individual post page
-app.get('/:post', function(req, res) {
+app.get('/p/:post', function(req, res) {
   var post = req.params.post;
   connection = mysql.createConnection(dbconfig);
   connection.connect(function(err) { if(!err) {
 	//Get all posts
-    connection.query('SELECT * from wp_posts WHERE post_status = "publish" AND post_type = "html5-blank"', function(err, rows) { if(!err) {
-	  for(var i in rows) {
-		  console.log(rows[i]);
-		if(post == rows[i]['post_name']) {
-		  connection.query('SELECT p.* FROM wp_postmeta AS pm INNER JOIN wp_posts AS p ON pm.meta_value=p.ID WHERE pm.post_id = ' + rows[i].ID + ' AND pm.meta_key = "_thumbnail_id" ORDER BY p.post_date DESC LIMIT 15', function(err, __rows) { if(!err) {
-		    for(var j in __rows) {
-		      var url = __rows[j].guid;
-		      rows[i]['thumb'] = url.substring(0, url.length - 4) + '-300x300' + url.substring(url.length - 4, url.length);
-		    };
-			console.log(rows[i]);
-			res.render('content', {_page: 'post', _post: rows[i]});
-	      }});
-		};
-	  }
+	connection.query('SELECT * from wp_posts WHERE post_status = "publish" AND post_type = "html5-blank" AND post_name = "' + post + '" LIMIT 1', function(err, con) { if(!err) {
+		connection.query('SELECT p.* FROM wp_postmeta AS pm INNER JOIN wp_posts AS p ON pm.meta_value=p.ID WHERE pm.post_id = ' + con[0].ID + ' AND pm.meta_key = "_thumbnail_id" LIMIT 1', function(err, _con) { if(!err) {
+		    var url = _con[0].guid;
+		    con[0]['thumb'] = url.substring(0, url.length - 4) + '-300x300' + url.substring(url.length - 4, url.length);
+			res.render('content', {_page: 'post', _post: con});
+		}});
 	}});
   }});
 });

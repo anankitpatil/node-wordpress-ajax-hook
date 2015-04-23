@@ -23,6 +23,7 @@ html(lang="en")
     meta(name='twitter:app:url:ipad', content='http://ankitpatil.com')
     meta(name='twitter:app:name:googleplay', content='Ankit Patil Android')
     meta(name='twitter:app:url:googleplay', content='http://ankitpatil.com')
+    link(rel='stylesheet' href='//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css')
     link(rel='stylesheet', type='text/css', href='/assets/styles.min.css')
   body
     .container
@@ -35,8 +36,9 @@ html(lang="en")
             each _post in _posts
               .row
                 .col-xs-3
-                  figure
-                    img(src!= _post.thumb)
+                  a(href!= 'p/' + _post.post_name + '/' class = 'thumb')
+                    figure
+                      img(src!= _post.thumb)
                 .col-xs-9
                   h3!= _post.post_title
                   p!= _post.post_excerpt
@@ -46,16 +48,27 @@ html(lang="en")
         else if(_page == 'static-dynamic-websites')
           h2 SECOND PAGE
         else if(_page == 'post')
-          .col-lg-3
-            figure
-              img(src!= _post.thumb)
-          .col-lg-9
-            h2!= _post.post_title
-            h4!= _post.post_excerpt
-          .row
-            .col-lg-12!= _post.post_content
+          .container.bar
+            .row
+              .col-xs-6
+                a(href='#' class='back')
+                  i.fa.fa-arrow-left
+              .col-xs-6.text-right
+                a(href='#' class='share')
+                  i.fa.fa-share
+          each _p in _post
+            .post
+              .col-lg-3
+                figure
+                  img(src!= _p.thumb)
+              .col-lg-9
+                .row
+                  h2!= _p.post_title
+                  h4!= _p.post_excerpt
+                  != _p.post_content
     footer.footer
       .container
     .load
       img(src='/img/load.gif')
+    script(src='https://connect.facebook.net/en_US/all.js')
     script(src='/assets/scripts.min.js')

@@ -26,7 +26,21 @@ figure img {
 	z-index: 9999;
 }
 /* Navbar */
-
+.bar {
+	position: fixed;
+	z-index: 9999;
+	background: #FFF;
+}
+.bar a {
+	display: inline-block;
+}
+.bar .fa {
+	font-size: 36px;
+	padding: 15px;
+}
+.bar .share {
+	float: right;
+}
 /* Content */
 .main {
 	opacity: 0;
@@ -57,5 +71,11 @@ figure img {
 }
 .main h2 {
 	margin-bottom: 54px;
+}
+.post {
+	margin-top: 67px;
+}
+.copy .thumb {
+	display: block;
 }
 /*Footer*/
