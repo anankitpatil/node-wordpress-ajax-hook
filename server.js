@@ -51,7 +51,7 @@ app.get("/", function(req, res) {
 });
 
 //Individual post page
-app.get('/p/:post', function(req, res) {
+app.get('/post/:post', function(req, res) {
   var post = req.params.post;
   connection = mysql.createConnection(dbconfig);
   connection.connect(function(err) { if(!err) {
