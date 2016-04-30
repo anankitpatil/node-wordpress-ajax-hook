@@ -30,14 +30,6 @@ figure img {
 	height: 32px;
 }
 /* Navbar */
-.bar {
-	position: fixed;
-	z-index: 9999;
-	background: #FFF;
-}
-.bar a {
-	display: inline-block;
-}
 .bar .fa {
 	font-size: 27px;
 	padding: 15px;
